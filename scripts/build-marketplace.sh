@@ -28,12 +28,14 @@ while IFS= read -r name; do
   size="$(wc -c < "$DL/$name.skill" | tr -d ' ')"
 
   desc="$(jq -r --arg n "$name" '.plugins[] | select(.name==$n) | .description' "$MARKET")"
+  cat="$(jq -r --arg n "$name" '.plugins[] | select(.name==$n) | .category // "Other"' "$MARKET")"
   items="$(jq \
     --arg name "$name" \
     --arg desc "$desc" \
+    --arg cat "$cat" \
     --arg dl "downloads/$name.skill" \
     --argjson size "$size" \
-    '. += [{name:$name, description:$desc, download:$dl, size:$size}]' \
+    '. += [{name:$name, description:$desc, category:$cat, download:$dl, size:$size}]' \
     <<<"$items")"
 done < <(jq -r '.plugins[].name' "$MARKET")
 

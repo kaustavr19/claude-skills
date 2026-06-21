@@ -1,21 +1,24 @@
-# Claude Skills by Kaustav Roy
+# Claude Skills
 
-A collection of [Claude](https://claude.com/claude-code) skills I've built — focused
-on UX, AI, and design workflows. Free for anyone to use.
+A community-maintained, open collection of [Claude](https://claude.com/claude-code)
+skills for UX, AI, writing, and design workflows. Free for anyone to use — and
+open to contributions.
+
+**🌐 Browse & search the marketplace:** https://kaustavr19.github.io/claude-skills/
 
 ## What's inside
 
 Each skill lives in its own folder under [`skills/`](skills/) and contains a
 `SKILL.md` (the entry point) plus any supporting files.
 
-| Skill | What it does |
-|-------|--------------|
-| [`anti-ai-slop`](skills/anti-ai-slop) | Cuts hedging, filler, and generic phrasing from writing |
-| [`article-formatter`](skills/article-formatter) | Formats articles for LinkedIn, Medium, Substack, and other platforms |
-| [`competitive-benchmark`](skills/competitive-benchmark) | Benchmarks your website against competitors and synthesises a strategy |
-| [`market-intelligence`](skills/market-intelligence) | Builds a strategic market brief — trends, audience, competitor deep-dives |
-| [`ux-audit`](skills/ux-audit) | Professional UI/UX audit across six frameworks, with optional deep lenses |
-| [`visual-aesthetics-audit`](skills/visual-aesthetics-audit) | Critiques visual design from screenshots/URLs with specific fix values |
+| Skill | Category | What it does |
+|-------|----------|--------------|
+| [`anti-ai-slop`](skills/anti-ai-slop) | Writing | Cuts hedging, filler, and generic phrasing from writing |
+| [`article-formatter`](skills/article-formatter) | Writing | Formats articles for LinkedIn, Medium, Substack, and other platforms |
+| [`competitive-benchmark`](skills/competitive-benchmark) | Strategy | Benchmarks a website against competitors and synthesises a strategy |
+| [`market-intelligence`](skills/market-intelligence) | Strategy | Builds a strategic market brief — trends, audience, competitor deep-dives |
+| [`ux-audit`](skills/ux-audit) | Design | Professional UI/UX audit across six frameworks, with optional deep lenses |
+| [`visual-aesthetics-audit`](skills/visual-aesthetics-audit) | Design | Critiques visual design from screenshots/URLs with specific fix values |
 
 ## How to use these skills
 
@@ -25,13 +28,18 @@ In Claude Code, add this repo as a skill/plugin marketplace:
 
 ```
 /plugin marketplace add kaustavr19/claude-skills
-/plugin install ux-audit@kaustav-skills
+/plugin install ux-audit@claude-skills
 ```
 
 Then invoke a skill by name, or let Claude trigger it automatically based on its
 `description`.
 
-### Option B — Manual install
+### Option B — Download from the website
+
+Go to https://kaustavr19.github.io/claude-skills/, find a skill, and click
+**Download .skill**. Drop the file into your skills directory or share it.
+
+### Option C — Manual install from source
 
 Clone the repo and copy any skill folder into your personal skills directory:
 
@@ -40,16 +48,21 @@ git clone https://github.com/kaustavr19/claude-skills.git
 cp -r claude-skills/skills/ux-audit ~/.claude/skills/
 ```
 
-## Authoring a new skill
+## Contributing a new skill
+
+Contributions are welcome — open a PR.
 
 1. Create a folder under `skills/<your-skill-name>/`.
-2. Add a `SKILL.md` with YAML frontmatter (`name`, `description`) — see
-   [`skills/example-skill/SKILL.md`](skills/example-skill/SKILL.md) for the shape.
-3. Write a sharp `description`: it's what Claude matches against to decide when to
-   trigger the skill. Include concrete trigger phrases and scenarios.
-4. Register it in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
-5. Add a row to the table above.
-6. Commit and push.
+2. Add a `SKILL.md` with YAML frontmatter (`name`, `description`). The
+   `description` is what Claude matches against to decide when to trigger the
+   skill, so make it rich with concrete trigger phrases and scenarios.
+3. Register it in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json),
+   including a `category` (e.g. Writing, Strategy, Design).
+4. Add a row to the table above.
+5. Open a pull request.
+
+The website and downloadable `.skill` files are rebuilt and deployed
+automatically on every push to `main` — no manual build step needed.
 
 ## License
 

@@ -1,42 +1,49 @@
 {
-  "name": "kaustav-skills",
+  "name": "claude-skills",
   "owner": {
-    "name": "Kaustav Roy",
-    "url": "https://github.com/kaustavr19"
+    "name": "Claude Skills contributors",
+    "url": "https://github.com/kaustavr19/claude-skills"
   },
   "metadata": {
-    "description": "Kaustav Roy's collection of Claude skills — UX, AI, and design-focused.",
-    "version": "0.1.0"
+    "description": "A community-maintained, open collection of Claude skills for UX, AI, writing, and design work. Browse and install at https://kaustavr19.github.io/claude-skills/",
+    "version": "0.1.0",
+    "homepage": "https://kaustavr19.github.io/claude-skills/"
   },
   "plugins": [
     {
       "name": "anti-ai-slop",
       "source": "./skills/anti-ai-slop",
+      "category": "Writing",
       "description": "Reduces AI slop in writing — cuts hedging, filler, and generic phrasing."
     },
     {
       "name": "article-formatter",
       "source": "./skills/article-formatter",
+      "category": "Writing",
       "description": "Full-stack article formatting assistant for LinkedIn, Medium, Substack, and more."
     },
     {
       "name": "competitive-benchmark",
       "source": "./skills/competitive-benchmark",
+      "category": "Strategy",
       "description": "Benchmark a brand's website against named competitors and synthesise a strategic direction."
     },
     {
       "name": "market-intelligence",
       "source": "./skills/market-intelligence",
+      "category": "Strategy",
       "description": "Strategic market intelligence brief — trends, audience, competitor deep-dives, and edge synthesis."
     },
     {
       "name": "ux-audit",
       "source": "./skills/ux-audit",
+      "category": "Design",
       "description": "Professional UI/UX audit across six frameworks with optional deep behavioural lenses."
     },
     {
       "name": "visual-aesthetics-audit",
       "source": "./skills/visual-aesthetics-audit",
+      "category": "Design",
       "description": "Critique the visual aesthetics of any UI from screenshots or URLs, with specific fix values."
     }
   ]

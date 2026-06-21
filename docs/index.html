@@ -3,18 +3,19 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Claude Skills · Kaustav Roy</title>
-<meta name="description" content="A collection of Claude skills by Kaustav Roy — UX, AI, and design-focused. Install via Claude Code or download directly." />
+<title>Claude Skills · Community marketplace</title>
+<meta name="description" content="A community-maintained, open collection of Claude skills for UX, AI, writing, and design. Browse, search, install via Claude Code, or download directly at https://kaustavr19.github.io/claude-skills/" />
 <style>
   :root {
     --bg: #fafaf9; --fg: #1c1917; --muted: #78716c; --card: #ffffff;
     --border: #e7e5e4; --accent: #4f46e5; --accent-fg: #ffffff; --code-bg: #f5f5f4;
-    --radius: 14px;
+    --chip: #f5f5f4; --radius: 14px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #0c0a09; --fg: #f5f5f4; --muted: #a8a29e; --card: #1c1917;
       --border: #292524; --accent: #818cf8; --accent-fg: #0c0a09; --code-bg: #161310;
+      --chip: #292524;
     }
   }
   * { box-sizing: border-box; }
@@ -25,10 +26,10 @@
   }
   .wrap { max-width: 860px; margin: 0 auto; padding: 64px 24px 96px; }
   header h1 { font-size: 30px; margin: 0 0 8px; letter-spacing: -0.02em; }
-  header p { color: var(--muted); margin: 0 0 28px; max-width: 60ch; }
+  header p { color: var(--muted); margin: 0 0 28px; max-width: 62ch; }
   .install {
     background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 16px 18px; margin-bottom: 40px;
+    padding: 16px 18px; margin-bottom: 32px;
   }
   .install .label { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
   .cmd-row { display: flex; gap: 8px; align-items: center; }
@@ -44,16 +45,36 @@
   }
   button.copy:hover, a.dl:hover { border-color: var(--accent); color: var(--accent); }
   button.copy.ok { border-color: #16a34a; color: #16a34a; }
+
+  .controls { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+  #search {
+    width: 100%; background: var(--card); color: var(--fg);
+    border: 1px solid var(--border); border-radius: 10px; padding: 11px 14px; font-size: 15px;
+  }
+  #search:focus { outline: none; border-color: var(--accent); }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .pill {
+    border: 1px solid var(--border); background: var(--chip); color: var(--muted);
+    border-radius: 999px; padding: 5px 13px; font-size: 13px; cursor: pointer; transition: .15s;
+  }
+  .pill:hover { color: var(--fg); }
+  .pill.active { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+
   .grid { display: grid; gap: 16px; }
   .card {
     background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
     padding: 20px 22px;
   }
-  .card h2 { margin: 0 0 6px; font-size: 17px; letter-spacing: -0.01em; }
+  .card .top { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+  .card h2 { margin: 0; font-size: 17px; letter-spacing: -0.01em; }
+  .card .tag {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted);
+    background: var(--chip); border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px;
+  }
   .card .desc { color: var(--muted); font-size: 14px; margin: 0 0 16px; }
   .card .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   .card .size { color: var(--muted); font-size: 12px; margin-left: auto; }
-  footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
+  footer { margin-top: 56px; color: var(--muted); font-size: 13px; line-height: 1.7; }
   footer a { color: var(--accent); }
   .empty { color: var(--muted); }
 </style>
@@ -62,7 +83,7 @@
 <div class="wrap">
   <header>
     <h1>Claude Skills</h1>
-    <p>A collection of <a href="https://claude.com/claude-code">Claude</a> skills by Kaustav Roy — UX, AI, and design-focused. Install the whole set via Claude Code, or download any skill individually.</p>
+    <p>A community-maintained, open collection of <a href="https://claude.com/claude-code">Claude</a> skills for UX, AI, writing, and design. Install the whole set via Claude Code, or download any skill individually. Contributions welcome — <a href="https://github.com/kaustavr19/claude-skills">add yours on GitHub</a>.</p>
   </header>
 
   <div class="install">
@@ -73,15 +94,25 @@
     </div>
   </div>
 
+  <div class="controls">
+    <input id="search" type="search" placeholder="Search skills…" autocomplete="off" />
+    <div class="filters" id="filters"></div>
+  </div>
+
   <div class="grid" id="grid"><p class="empty">Loading skills…</p></div>
 
   <footer>
-    Source &amp; full READMEs on
+    Live at <a href="https://kaustavr19.github.io/claude-skills/">kaustavr19.github.io/claude-skills</a><br />
+    Source, full READMEs &amp; contribution guide on
     <a href="https://github.com/kaustavr19/claude-skills">GitHub</a>. MIT licensed.
   </footer>
 </div>
 
 <script>
+  let ALL = [];
+  let MARKET = "claude-skills";
+  let activeCat = "All";
+
   function copyText(text, btn) {
     navigator.clipboard.writeText(text).then(() => {
       const old = btn.textContent;
@@ -93,21 +124,33 @@
     b.addEventListener("click", () =>
       copyText(document.querySelector(b.dataset.copy).textContent, b));
   });
-  function fmtSize(n) {
-    return n > 1024 ? (n / 1024).toFixed(1) + " KB" : n + " B";
-  }
-  fetch("skills.json").then(r => r.json()).then(data => {
+  function fmtSize(n) { return n > 1024 ? (n / 1024).toFixed(1) + " KB" : n + " B"; }
+
+  function render() {
+    const q = document.getElementById("search").value.trim().toLowerCase();
     const grid = document.getElementById("grid");
+    const list = ALL.filter(s => {
+      const catOk = activeCat === "All" || s.category === activeCat;
+      const qOk = !q ||
+        s.name.toLowerCase().includes(q) ||
+        (s.description || "").toLowerCase().includes(q) ||
+        (s.category || "").toLowerCase().includes(q);
+      return catOk && qOk;
+    });
+    if (!list.length) { grid.innerHTML = '<p class="empty">No skills match.</p>'; return; }
     grid.innerHTML = "";
-    data.skills.forEach(s => {
-      const installCmd = `/plugin install ${s.name}@${data.marketplace}`;
+    list.forEach(s => {
+      const installCmd = `/plugin install ${s.name}@${MARKET}`;
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `
-        <h2>${s.name}</h2>
+        <div class="top">
+          <h2>${s.name}</h2>
+          ${s.category ? `<span class="tag">${s.category}</span>` : ""}
+        </div>
         <p class="desc">${s.description || ""}</p>
         <div class="actions">
-          <button class="copy" data-cmd="${installCmd}">Copy install command</button>
+          <button class="copy">Copy install command</button>
           <a class="dl" href="${s.download}" download>Download .skill</a>
           <span class="size">${fmtSize(s.size)}</span>
         </div>`;
@@ -115,6 +158,32 @@
         copyText(installCmd, e.currentTarget));
       grid.appendChild(card);
     });
+  }
+
+  function buildFilters() {
+    const cats = ["All", ...Array.from(new Set(ALL.map(s => s.category).filter(Boolean))).sort()];
+    const wrap = document.getElementById("filters");
+    wrap.innerHTML = "";
+    cats.forEach(c => {
+      const pill = document.createElement("button");
+      pill.className = "pill" + (c === activeCat ? " active" : "");
+      pill.textContent = c;
+      pill.addEventListener("click", () => {
+        activeCat = c;
+        wrap.querySelectorAll(".pill").forEach(p => p.classList.toggle("active", p.textContent === c));
+        render();
+      });
+      wrap.appendChild(pill);
+    });
+  }
+
+  document.getElementById("search").addEventListener("input", render);
+
+  fetch("skills.json").then(r => r.json()).then(data => {
+    ALL = data.skills || [];
+    MARKET = data.marketplace || MARKET;
+    buildFilters();
+    render();
   }).catch(() => {
     document.getElementById("grid").innerHTML =
       '<p class="empty">Could not load skills.json.</p>';
