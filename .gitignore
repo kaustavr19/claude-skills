@@ -8,3 +8,9 @@ desktop.ini
 
 # Skill manager internals (do not publish other people's lockfiles)
 .skill-lock.json
+
+# Generated marketplace site
+/site/
+
+# Local preview tooling
+/.claude/
