@@ -10,9 +10,34 @@
   },
   "plugins": [
     {
-      "name": "example-skill",
-      "source": "./skills/example-skill",
-      "description": "A template skill showing the required structure. Replace with your own."
+      "name": "anti-ai-slop",
+      "source": "./skills/anti-ai-slop",
+      "description": "Reduces AI slop in writing — cuts hedging, filler, and generic phrasing."
+    },
+    {
+      "name": "article-formatter",
+      "source": "./skills/article-formatter",
+      "description": "Full-stack article formatting assistant for LinkedIn, Medium, Substack, and more."
+    },
+    {
+      "name": "competitive-benchmark",
+      "source": "./skills/competitive-benchmark",
+      "description": "Benchmark a brand's website against named competitors and synthesise a strategic direction."
+    },
+    {
+      "name": "market-intelligence",
+      "source": "./skills/market-intelligence",
+      "description": "Strategic market intelligence brief — trends, audience, competitor deep-dives, and edge synthesis."
+    },
+    {
+      "name": "ux-audit",
+      "source": "./skills/ux-audit",
+      "description": "Professional UI/UX audit across six frameworks with optional deep behavioural lenses."
+    },
+    {
+      "name": "visual-aesthetics-audit",
+      "source": "./skills/visual-aesthetics-audit",
+      "description": "Critique the visual aesthetics of any UI from screenshots or URLs, with specific fix values."
     }
   ]
 }

@@ -10,7 +10,12 @@ Each skill lives in its own folder under [`skills/`](skills/) and contains a
 
 | Skill | What it does |
 |-------|--------------|
-| `example-skill` | Template — replace with real skills |
+| [`anti-ai-slop`](skills/anti-ai-slop) | Cuts hedging, filler, and generic phrasing from writing |
+| [`article-formatter`](skills/article-formatter) | Formats articles for LinkedIn, Medium, Substack, and other platforms |
+| [`competitive-benchmark`](skills/competitive-benchmark) | Benchmarks your website against competitors and synthesises a strategy |
+| [`market-intelligence`](skills/market-intelligence) | Builds a strategic market brief — trends, audience, competitor deep-dives |
+| [`ux-audit`](skills/ux-audit) | Professional UI/UX audit across six frameworks, with optional deep lenses |
+| [`visual-aesthetics-audit`](skills/visual-aesthetics-audit) | Critiques visual design from screenshots/URLs with specific fix values |
 
 ## How to use these skills
 
@@ -20,7 +25,7 @@ In Claude Code, add this repo as a skill/plugin marketplace:
 
 ```
 /plugin marketplace add kaustavr19/claude-skills
-/plugin install example-skill@kaustav-skills
+/plugin install ux-audit@kaustav-skills
 ```
 
 Then invoke a skill by name, or let Claude trigger it automatically based on its
@@ -32,7 +37,7 @@ Clone the repo and copy any skill folder into your personal skills directory:
 
 ```bash
 git clone https://github.com/kaustavr19/claude-skills.git
-cp -r claude-skills/skills/example-skill ~/.claude/skills/
+cp -r claude-skills/skills/ux-audit ~/.claude/skills/
 ```
 
 ## Authoring a new skill
