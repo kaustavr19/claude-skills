@@ -1,0 +1,18 @@
+{
+  "name": "kaustav-skills",
+  "owner": {
+    "name": "Kaustav Roy",
+    "url": "https://github.com/kaustavr19"
+  },
+  "metadata": {
+    "description": "Kaustav Roy's collection of Claude skills — UX, AI, and design-focused.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "example-skill",
+      "source": "./skills/example-skill",
+      "description": "A template skill showing the required structure. Replace with your own."
+    }
+  ]
+}
