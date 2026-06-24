@@ -35,6 +35,12 @@
       "description": "Strategic market intelligence brief — trends, audience, competitor deep-dives, and edge synthesis."
     },
     {
+      "name": "seo-audit",
+      "source": "./skills/seo-audit",
+      "category": "Strategy",
+      "description": "End-to-end SEO audit — technical, on-page, structured data, Core Web Vitals, multilingual, and AI-search (GEO) discoverability."
+    },
+    {
       "name": "ux-audit",
       "source": "./skills/ux-audit",
       "category": "Design",

@@ -17,6 +17,7 @@ Each skill lives in its own folder under [`skills/`](skills/) and contains a
 | [`article-formatter`](skills/article-formatter) | Writing | Formats articles for LinkedIn, Medium, Substack, and other platforms |
 | [`competitive-benchmark`](skills/competitive-benchmark) | Strategy | Benchmarks a website against competitors and synthesises a strategy |
 | [`market-intelligence`](skills/market-intelligence) | Strategy | Builds a strategic market brief — trends, audience, competitor deep-dives |
+| [`seo-audit`](skills/seo-audit) | Strategy | End-to-end SEO audit — technical, on-page, schema, Core Web Vitals, and AI-search (GEO) |
 | [`ux-audit`](skills/ux-audit) | Design | Professional UI/UX audit across six frameworks, with optional deep lenses |
 | [`visual-aesthetics-audit`](skills/visual-aesthetics-audit) | Design | Critiques visual design from screenshots/URLs with specific fix values |
 
