@@ -43,7 +43,7 @@ tag/score/value), then specific fixes. Severity-tag each finding:
 ### 3.4 Performance & Core Web Vitals
 ### 3.5 Multilingual & Non-Latin Discoverability   ← only if applicable
 ### 3.6 GEO / AI Discoverability
-### 3.7+ [Deep lenses, if selected]
+### 3.7+ [Deep lenses, if selected — Local / E-commerce / Content / SaaS / Off-page / International]
 
 ## 4. Competitive / Opportunity Context (optional)
 - Who actually ranks for the core query; where the winnable lanes are.

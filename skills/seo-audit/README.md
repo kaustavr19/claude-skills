@@ -17,8 +17,12 @@ Built to **degrade gracefully**: it works with a live browser, with only
   *answer/search* crawlers so you can be cited in ChatGPT/Perplexity/Claude
   without feeding model training — a distinction most guidance misses.
 - **CORE + optional deep lenses.** A six-pillar CORE pass runs by default;
-  Local, E-commerce, Off-page/Authority, and International lenses load only when
-  asked.
+  Local, E-commerce, Content/Publisher, SaaS/B2B, Off-page/Authority, and
+  International lenses load only when the site type calls for them.
+- **Conversational, not a form.** It detects everything it can (language,
+  rendering, platform, competitors) and asks only the genuine unknowns — scope,
+  data access, intent, and the judgment calls the crawl surfaces. A three-beat
+  rhythm: scope → recon recap → deliver. Fully-specified requests skip to work.
 - **Self-contained but aware.** Needs no other skill, but hands off to
   `visual-aesthetics-audit`, `competitive-benchmark`, or `market-intelligence`
   when they're installed and relevant.
@@ -26,13 +30,15 @@ Built to **degrade gracefully**: it works with a live browser, with only
 ## Structure
 ```
 seo-audit/
-├── SKILL.md                                  # workflow, depth gate, CORE pillars, output
+├── SKILL.md                                  # conversation flow, CORE pillars, output
 ├── references/
 │   ├── live-recon-appendix.md                # tool-aware data-gathering playbook
 │   ├── multilingual-discoverability.md       # the conditional non-Latin pillar
 │   ├── geo-playbook.md                        # AI/GEO + crawler opt-in table
 │   ├── deep-lens-local.md
 │   ├── deep-lens-ecommerce.md
+│   ├── deep-lens-content.md
+│   ├── deep-lens-saas.md
 │   ├── deep-lens-offpage.md
 │   └── deep-lens-international.md
 └── assets/

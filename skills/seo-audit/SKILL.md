@@ -6,16 +6,15 @@ description: >-
   multilingual & non-Latin discoverability, and Generative Engine Optimisation
   (GEO / being found via AI assistants like ChatGPT, Perplexity, Gemini). Runs a
   CORE six-pillar audit by default with optional DEEP LENSES (Local, E-commerce,
-  Off-page, International). Produces a severity-tiered report with RAG status and
-  an impact×effort action plan.
+  Content/Publisher, SaaS/B2B, Off-page, International). Produces a
+  severity-tiered report with RAG status and an impact×effort action plan.
   Use whenever the user wants to audit, diagnose, or improve a site's search
   visibility — "audit my SEO", "why isn't my site ranking", "is my site
-  indexed", "technical SEO check", "get found in ChatGPT/AI search", "GEO
-  audit", or "my non-English / bilingual site isn't showing up". Also trigger
-  when the user shares a URL and asks about discoverability, indexing,
-  crawlability, schema, sitemaps, robots.txt, or hreflang — even without saying
-  "SEO", and even for a pointed question like "is my robots.txt blocking
-  Google?".
+  indexed", "technical SEO check", "get found in ChatGPT/AI search", or "my
+  non-English / bilingual site isn't showing up". Also trigger when the user
+  shares a URL and asks about discoverability, indexing, crawlability, schema,
+  sitemaps, robots.txt, or hreflang — even without saying "SEO", and even for
+  "is my robots.txt blocking Google?".
 ---
 
 # SEO Audit
@@ -32,20 +31,79 @@ what you couldn't verify, and audit the rest.
 
 ---
 
-## Step 0 — Gate on depth BEFORE auditing (do not skip)
+## How to run this: a conversation, not a form
 
-A full audit with every lens is overwhelming and usually wasteful. **Always
-establish scope first.** Ask the user (one short question, offer the options):
+A good audit needs a little from the user — but **most of what a naive tool would
+ask, this skill detects instead.** Asking for things you could crawl yourself
+(language, platform, rendering, competitors) is fake-collaborative and signals a
+dumb tool. The guiding rule:
 
-> "I'll run the **CORE audit** by default — Crawlability & Indexing, On-page,
-> Structured Data, Performance, Multilingual Discoverability (only if the site
-> isn't plain English), and GEO/AI Discoverability.
-> Want any **deep lenses** on top? **Local SEO** · **E-commerce SEO** ·
-> **Off-page & Authority** · **International SEO**."
+> **Detect first. Surface what you found. Ask only the genuine unknowns.**
 
-If the user has already specified scope, or clearly just wants a fast
-single-issue answer ("is my robots.txt blocking Google?"), **skip the gate and
-go straight to the relevant pillar.** Judgment over ceremony.
+The interaction has a natural **three-beat rhythm**. Adapt it — never run it as a
+rigid script.
+
+### Beat 1 — Scope (one short exchange, before crawling)
+Establish only what you cannot detect. Bundle into one brief message:
+
+- **Depth:** "I'll run the **CORE audit** by default — Crawlability, On-page,
+  Structured Data, Performance, Multilingual (only if the site isn't plain
+  English), and GEO/AI. Want any **deep lenses**? Local · E-commerce · Content/
+  Publisher · SaaS/B2B · Off-page & Authority · International."
+- **Private data:** "Do you have Google Search Console / analytics access I can
+  use, or should I treat this as an on-page/technical audit?" (Changes whether
+  findings can include traffic/ranking data.)
+- **Intent (light touch):** "Anything specific prompting this — a market you're
+  targeting, a drop you noticed, a goal like AI visibility?" One line; don't
+  interrogate.
+
+Then **go.** Don't hold a long Q&A before any work — one scope exchange, then
+crawl. (If the user already specified scope, skip straight to crawling.)
+
+### Beat 2 — Recon recap (mid-audit, after crawling)
+This is where it feels collaborative. Show you did the work, then ask only the
+**consequential judgment calls** the crawl surfaced but shouldn't be decided
+unilaterally. For example:
+
+- "Your site renders real Bengali text (great) but declares `lang=\"en\"` — I'll
+  flag that. Two things I want **your** call on first:"
+- **GEO values call** (only if AI crawlers are blocked): "Your robots.txt blocks
+  AI crawlers. Do you actually *want* to be discoverable in ChatGPT/Perplexity,
+  or is keeping your content out of AI deliberate?" This is a values decision,
+  not a technical default — never reverse it silently.
+- **Strategic forks** the audit reveals (e.g. native-script vs romanized URL
+  strategy, a positioning gap). Offer the tradeoff; let the user choose.
+
+If the crawl surfaces no real judgment calls, skip Beat 2 — don't manufacture
+questions.
+
+### Beat 3 — Deliver
+Confirm format (Markdown default; offer Word doc for client-ready) and produce
+the report.
+
+### When to skip the conversation entirely
+If the request is **fully specified** ("full audit of x.com, I have GSC, US
+market, give me a Word doc") → skip Beats 1–2, just work. If it's a **fast
+single-issue question** ("is my robots.txt blocking Google?") → answer it
+directly, no ceremony. **Judgment over ritual.**
+
+### Choosing the question format
+Pick by context. For a few crisp either/or choices where interactive option
+controls are available, use them — they're faster for the user. For open intent
+("what market are you targeting?") or a nuanced tradeoff that needs explanation,
+use a short numbered list in prose. Never force buttons onto a genuinely
+open-ended question, and never spread questions across many turns when one
+bundled message would do.
+
+### What you detect vs. what you ask — quick reference
+| Detect (never ask) | Ask (genuine unknowns) |
+|---|---|
+| Language / script (Unicode test) | Depth / which deep lenses |
+| SSR vs CSR (fetch vs render) | GSC / analytics access |
+| Platform / CMS (DOM signals) | Business intent / target market |
+| Schema, robots, sitemap state | GEO opt-in (the values call) |
+| Competitors (SERP sampling) | Strategic forks the audit surfaces |
+| Index status (`site:` checks) | Deliverable format |
 
 Do not run deep lenses unless asked. Do not pad the report with "N/A" sections.
 
@@ -177,14 +235,23 @@ playbook — including the crawler opt-in table — is in
 
 ---
 
-## Step 3 — Deep lenses (only if requested in Step 0)
+## Step 3 — Deep lenses (only if requested in Beat 1)
 
-Each lens has its own reference file — read it only when that lens is selected:
+Each lens has its own reference file — read it only when that lens is selected.
+Match the lens to the site type you detected: a store ⇒ E-commerce; a blog/news/
+publisher ⇒ Content; a B2B product ⇒ SaaS; a local business ⇒ Local. Suggest the
+fitting lens during Beat 1 rather than waiting to be asked.
 
 - **Local SEO** → `references/deep-lens-local.md` (Google Business Profile, NAP
   consistency, local pack, reviews, local schema)
 - **E-commerce SEO** → `references/deep-lens-ecommerce.md` (product feeds /
   Merchant Center, faceted-nav crawl traps, pagination, product schema depth)
+- **Content / Publisher SEO** → `references/deep-lens-content.md` (topical
+  authority, content clusters & pillar pages, freshness/decay, author E-E-A-T,
+  internal linking as topic modelling)
+- **SaaS / B2B SEO** → `references/deep-lens-saas.md` (programmatic SEO,
+  comparison/alternative pages, docs/KB indexing, bottom-of-funnel intent,
+  product-led content)
 - **Off-page & Authority** → `references/deep-lens-offpage.md` (backlink profile,
   E-E-A-T, brand signals, digital PR angles)
 - **International SEO** → `references/deep-lens-international.md` (hreflang at
